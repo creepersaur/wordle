@@ -1,0 +1,192 @@
+* {
+    font-family: Ubuntu;
+    --correct: rgb(118, 187, 62);
+    --contains: rgb(219, 176, 57);
+}
+
+body {
+    background: #2e2e2e;
+}
+
+#Main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+@keyframes words_Show {
+    from {background: rgba(167, 255, 67, 0.2); scale: 0}
+    to {background: rgba(0, 0, 0, 0.2); scale: 1}
+}
+
+#words {
+    display: flex;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    height: calc(50vh + 50px);
+    width: 50vw;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.274);
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    animation: words_Show 1s forwards;
+}
+
+@keyframes wDiv_show {
+    from {
+        opacity: 0;
+        scale: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#words div {
+    display: flex;
+    background: rgba(0, 0, 0, 0.219);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: white;
+    justify-content: center;
+
+    animation: wDiv_show 1s forwards;
+}
+
+#words div span {
+    position: relative;
+    background: rgba(255, 0, 0, 0.24);
+    flex-grow: 1;
+    padding: 10px;
+    visibility: hidden;
+}
+
+#words div span::after {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    text-align: center;
+    align-content: center;
+    font-size: 30px;
+    content: attr(text);
+    width: calc(100% - 20px);
+    max-height: calc(100% - 20px);
+    aspect-ratio: 1 !important;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.274);
+    background: rgba(112, 112, 112, 0.178);
+    display: block;
+    visibility: visible;
+}
+
+#words div span {
+    opacity: 0;
+}
+
+#words div span[contains]::after {
+    background: var(--contains);
+    border-color: rgb(255, 253, 111);
+}
+
+#words div span[correct]::after {
+    background: var(--correct);
+    border-color: rgb(193, 255, 111);
+}
+
+@keyframes letter_init {
+    from {
+        filter: brightness(10);
+        opacity: 0;
+        rotate: 50deg;
+        scale: 0 0;
+        translate: -50% 50%;
+    }
+
+    to {
+        filter: brightness(1);
+        scale: 1;
+    }
+}
+
+#words div span[text] {
+    opacity: 1;
+    animation: letter_init 0.5s forwards cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes input_Show {
+    from {scale: 0 1}
+    to {background: rgba(0, 0, 0, 0.2); scale: 1}
+}
+
+#input_div {
+    margin-bottom: 20px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.329);
+    border: 0;
+    padding: 10px;
+    border-radius: 10px;
+    outline: 0.15em solid rgba(255, 255, 255, 0.24);
+    display: flex;
+    scale: 0;
+
+    animation: input_Show 1s forwards cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-delay: 0.5s;
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+input {
+    color: white;
+    width: 100%;
+    background: none;
+    border: 0;
+    outline: 0;
+    font-size: 27px;
+}
+
+#input_div:has(input:focus) {
+    background: rgba(0, 0, 0, 0.5);
+    outline: 0.2em solid rgb(37, 204, 255);
+}
+
+#input_div button {
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 7px;
+    border: 2px solid rgb(193, 255, 111);
+    background: var(--correct);
+
+    transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#input_div button:hover {
+    filter: brightness(1.2);
+}
+
+
+#input_div button:active {
+    filter: brightness(0.8);
+}
+
+#input_div button::after {
+    content: ">";
+    color: white;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: JetbrainsMono NF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    translate: 0 -2px;
+}
