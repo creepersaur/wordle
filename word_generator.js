@@ -8,5 +8,5 @@ async function word_query(length) {
     );
 
     let words = await query.json();
-    return "nigga"//words[0]
+    return words[0]
 }
