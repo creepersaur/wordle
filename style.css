@@ -190,3 +190,51 @@ input {
     height: 100%;
     translate: 0 -2px;
 }
+
+#letters {
+    margin-top: 20px;
+    padding: 10px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    width: calc(100% + 20px);
+    translate: calc(-10px - 10px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.274);
+}
+
+#letters span.character {
+    background: rgba(0, 0, 0, 0.377);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 5px;
+    border-radius: 7px;
+    margin-bottom: 5px;
+    height: 23px;
+    color: white;
+    align-content: center;
+    text-align: center;
+
+    transition: 0.5s;
+}
+
+#letters span.character[contains] {
+    background: var(--contains);
+    border-color: rgb(255, 253, 111);
+
+    rotate: 360deg;
+    scale: 1.1;
+}
+
+#letters span.character[correct] {
+    background: var(--correct);
+    border-color: rgb(193, 255, 111);
+
+    rotate: 360deg;
+    scale: 1.1;
+}

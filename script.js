@@ -19,10 +19,22 @@ function create_word_div(wNum, value) {
                 L.setAttribute("text", letter);
             }, e * 100);
 
+            let letter_span = document.getElementById("char_" + letter);
+
             if (letter.length && WORD.includes(letter)) {
+                if (!letter_span.hasAttribute("correct")) {
+                    letter_span.setAttribute(
+                        "contains",
+                        true,
+                    );
+                }
                 L.setAttribute("contains", true);
             }
             if (WORD[e] == letter) {
+                letter_span.setAttribute(
+                    "correct",
+                    true,
+                );
                 L.setAttribute("correct", true);
             }
 
